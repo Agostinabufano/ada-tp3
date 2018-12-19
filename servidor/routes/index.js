@@ -78,7 +78,10 @@ router.get('/api/users', function (req, res, next) {
   } else {
     var search = req.query.search.toLowerCase();
     for (var i = 0; i < data.arr.length; i++) {
-      if (data.arr[i].name.toLowerCase().includes(search) || data.arr[i].surname.toLowerCase().includes(search) || data.arr[i].tel.includes(search) || data.arr[i].mail.includes(search)) {
+      if (data.arr[i].name.toLowerCase().includes(search) ||
+        data.arr[i].surname.toLowerCase().includes(search) ||
+        data.arr[i].tel.includes(search) ||
+        data.arr[i].mail.includes(search)) {
         filteredUsers.push(data.arr[i]);
       }
     }
@@ -99,7 +102,6 @@ router.get("/api/users/:id", function (req, res) {
 })
 
 router.put("/api/users/:id", function (req, res) {
-  // function editUser(data) {
   const id = req.params.id;
   const body = req.body;
   console.log(id, req.body);
