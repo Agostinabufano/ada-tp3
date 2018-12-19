@@ -3,7 +3,7 @@ function name() {
     if (nameI !== "" && nameI.length <= 30) {
         return true;
     } else {
-        $("#name").parent().append(`<p>Es necesario ingresar un nombre</p>`);
+        $("#name").parent().append(`<p class="error">Es necesario ingresar un nombre</p>`);
         return false;
     }
 }
@@ -13,7 +13,7 @@ function surname() {
     if (surnameI !== "" && surnameI.length <= 30) {
         return true;
     } else {
-        $("#surname").parent().append(`<p>Es necesario ingresar un apellido</p>`);
+        $("#surname").parent().append(`<p class="error">Es necesario ingresar un apellido</p>`);
         return false;
     }
 }
@@ -23,7 +23,7 @@ function telephone() {
     if (telI !== "" && /[0-9]/.test(telI)) {
         return true;
     } else {
-        $("#tel").parent().append(`<p>Es necesario ingresar un número de teléfono</p>`);
+        $("#tel").parent().append(`<p class="error">Es necesario ingresar un número de teléfono</p>`);
         return false;
     }
 }
@@ -33,7 +33,7 @@ function mail() {
     if (emailI !== "" && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(emailI)) {
         return true;
     } else {
-        $("#mail").parent().append(`<p>Es necesario ingresar una dirección de mail</p>`);
+        $("#mail").parent().append(`<p class="error">Es necesario ingresar una dirección de mail</p>`);
         return false;
     }
 }
@@ -68,7 +68,7 @@ function saveEditUser(e) {
                 mail: newMail
             },
             success: function (result) {
-                $("#editUser").append(`<p>Los datos han sido modificados y guardados exitosamente. MUCHAS GRACIAS.</p>`)
+                $("#editUser").append(`<p class="success">Los datos han sido modificados y guardados exitosamente. MUCHAS GRACIAS.</p>`)
             }
         });
     }

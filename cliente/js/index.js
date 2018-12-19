@@ -10,7 +10,7 @@ function name() {
     if (nameI !== "" && nameI.length <= 30) {
         return true;
     } else {
-        $("#name").parent().append(`<p>Es necesario ingresar un nombre</p>`);
+        $("#name").parent().append(`<p class="error">Es necesario ingresar un nombre</p>`);
         return false;
     }
 }
@@ -20,7 +20,7 @@ function surname() {
     if (surnameI !== "" && surnameI.length <= 30) {
         return true;
     } else {
-        $("#surname").parent().append(`<p>Es necesario ingresar un apellido</p>`);
+        $("#surname").parent().append(`<p class="error">Es necesario ingresar un apellido</p>`);
         return false;
     }
 }
@@ -30,7 +30,7 @@ function telephone() {
     if (telI !== "" && /[0-9]/.test(telI)) {
         return true;
     } else {
-        $("#tel").parent().append(`<p>Es necesario ingresar un número de teléfono</p>`);
+        $("#tel").parent().append(`<p class="error">Es necesario ingresar un número de teléfono</p>`);
         return false;
     }
 }
@@ -40,7 +40,7 @@ function mail() {
     if (emailI !== "" && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(emailI)) {
         return true;
     } else {
-        $("#mail").parent().append(`<p>Es necesario ingresar una dirección de mail</p>`);
+        $("#mail").parent().append(`<p class="error">Es necesario ingresar una dirección de mail</p>`);
         return false;
     }
 }
@@ -89,15 +89,14 @@ $("#filtro").on("click", function () {
 })
 
 function createUserDiv(user) {
-    return `<div id=${user.id}>
-    <div class="nameContainer">${user.name}</div>
-    <div class= "surnameContainer">${user.surname}</div>
-    <div class="telContainer">${user.tel}</div>
-    <div class="mailContainer">${user.mail}</div>
-    <div class="buttonContainer">
-    <a href="/users/edit?id=${user.id}"><button id="editUser${user.id}">Editar</button></a>
-    <button id="deleteUser${user.id}">Eliminar</button>
+    return `<div id=${user.id} class="user-container">
+    <div class="container">${user.name}</div>
+    <div class= "container">${user.surname}</div>
+    <div class="container">${user.tel}</div>
+    <div class="container">${user.mail}</div>
+    <div class="button-container">
+    <a href="/users/edit?id=${user.id}"><button id="editUser${user.id}">EDITAR</button></a>
+    <button id="deleteUser${user.id}">ELIMINAR</button>
     </div>
     </div>`;
 }
-
