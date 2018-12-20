@@ -30,7 +30,7 @@ router.post('/api/user', function (req, res, next) {
   const user = req.body;
   if (validate(user) == true) {
     saveData(user);
-    res.send('<div><p>Muchas gracias por registrarse</p></div>')
+    res.redirect("/users");
   } else {
     res.status(400).send("Es necesario que cargue correctamente sus datos");
   }
