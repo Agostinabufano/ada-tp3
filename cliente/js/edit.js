@@ -1,39 +1,44 @@
+const inputName = $("#name");
+const inputSurname = $("#surname");
+const inputTel = $("#tel");
+const inputMail = $("#email");
+
 function name() {
-    var nameI = $("#name").val();
+    var nameI = inputName.val();
     if (nameI !== "" && nameI.length <= 30) {
         return true;
     } else {
-        $("#name").parent().append(`<p class="error">Es necesario ingresar un nombre</p>`);
+        inputName.parent().html(`<p class="error">Es necesario ingresar un nombre</p>`);
         return false;
     }
 }
 
 function surname() {
-    var surnameI = $("#surname").val();
+    var surnameI = inputSurname.val();
     if (surnameI !== "" && surnameI.length <= 30) {
         return true;
     } else {
-        $("#surname").parent().append(`<p class="error">Es necesario ingresar un apellido</p>`);
+        inputSurname.parent().html(`<p class="error">Es necesario ingresar un apellido</p>`);
         return false;
     }
 }
 
 function telephone() {
-    var telI = $("#tel").val();
+    var telI = inputTel.val();
     if (telI !== "" && /[0-9]/.test(telI)) {
         return true;
     } else {
-        $("#tel").parent().append(`<p class="error">Es necesario ingresar un número de teléfono</p>`);
+        inputTel.parent().html(`<p class="error">Es necesario ingresar un número de teléfono</p>`);
         return false;
     }
 }
 
 function mail() {
-    var emailI = $("#mail").val();
+    var emailI = inputMail.val();
     if (emailI !== "" && /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.([a-zA-Z]{2,4})+$/.test(emailI)) {
         return true;
     } else {
-        $("#mail").parent().append(`<p class="error">Es necesario ingresar una dirección de mail</p>`);
+       inputMail.parent().html(`<p class="error">Es necesario ingresar una dirección de mail</p>`);
         return false;
     }
 }
@@ -42,10 +47,10 @@ function loadedUser() {
     var id = searchParams();
     $.ajax(`http://localhost:3000/api/users/${id}`).done(function (data) {
         var datito = JSON.parse(data);
-        $('#name').val(datito.name);
-        $('#surname').val(datito.surname);
-        $('#tel').val(datito.tel);
-        $('#mail').val(datito.mail);
+        inputName.val(datito.name);
+        inputSurname.val(datito.surname);
+        inputTel.val(datito.tel);
+        inputMail.val(datito.mail);
     })
 }
 
@@ -53,10 +58,10 @@ loadedUser();
 
 function saveEditUser(e) {
     var id = searchParams();
-    var newName = $("#name").val();
-    var newSurname = $("#surname").val();
-    var newTel = $("#tel").val();
-    var newMail = $("#mail").val();
+    var newName = inputName.val();
+    var newSurname = inputSurname.val();
+    var newTel = inputTel.val();
+    var newMail = inputMail.val();
     if (name() && surname() && telephone() && mail()) {
         $.ajax({
             url: `http://localhost:3000/api/users/${id}`,
@@ -86,3 +91,7 @@ function searchParams() {
     // "[id,7125]"
     return search[1];
 }
+
+$("#return").on("click", function () {
+    location.href(`http://localhost:3000/api/users`)
+})
